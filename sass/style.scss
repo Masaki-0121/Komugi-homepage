@@ -1,21 +1,11 @@
 @mixin responsive($breakpoint) {
-  @if $breakpoint == mobile {
-    @media only screen and (max-width: 376px) {
+  @if $breakpoint == desktop-large {
+    @media only screen and (min-width: 1600px) {
       @content;
     }
   }
-  @if $breakpoint == mobile-side {
-    @media only screen and (min-width: 376px) and (max-width: 568px) {
-      @content;
-    }
-  }
-  @if $breakpoint == tab {
-    @media only screen and (min-width: 568px) and (max-width: 768px) {
-      @content;
-    }
-  }
-  @if $breakpoint == lap-top {
-    @media only screen and (min-width: 768px) and (max-width: 992px) {
+  @if $breakpoint == desktop {
+    @media only screen and (min-width: 1440px) and (max-width: 1600px) {
       @content;
     }
   }
@@ -24,8 +14,28 @@
       @content;
     }
   }
-  @if $breakpoint == desktop {
-    @media only screen and (min-width: 1440px) {
+  @if $breakpoint == lap-top {
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+      @content;
+    }
+  }
+  @if $breakpoint == tab {
+    @media only screen and (min-width: 568px) and (max-width: 768px) {
+      @content;
+    }
+  }
+  @if $breakpoint == mobile {
+    @media only screen and (max-width: 375px) {
+      @content;
+    }
+  }
+  @if $breakpoint == iphone-small {
+    @media only screen and (device-width: 375px) and (device-height: 667px) {
+      @content;
+    }
+  }
+  @if $breakpoint == iphone11 {
+    @media only screen and (device-width: 393px) and (device-height: 759px) {
       @content;
     }
   }
@@ -38,6 +48,8 @@ $color-noir: #2a2a22;
 // FONTS//
 $font-lora: "Lora", "serif";
 $font-roboto: "Roboto", "sans-serif";
+
+// (-webkit-device-pixel-ratio: 2)
 
 ///////////////////
 * {
@@ -78,6 +90,9 @@ header {
       font-size: 3rem;
       padding-bottom: 40px;
       margin-bottom: 20px;
+      @include responsive(iphone-small) {
+        font-size: 1.5rem;
+      }
     }
 
     .popup-content {
@@ -85,6 +100,9 @@ header {
       grid-template-columns: 400px 400px;
       position: relative;
       @include responsive(mobile) {
+        grid-template-columns: 100%;
+      }
+      @include responsive(iphone-small) {
         grid-template-columns: 100%;
       }
       @include responsive(mobile-side) {
@@ -121,11 +139,16 @@ header {
       }
 
       .card-img {
-        background-image: url("/images/booking-bg.png");
+        background-image: url("../images/booking-bg.png");
         background-repeat: no-repeat;
         @include responsive(mobile) {
           height: 260px;
         }
+        @include responsive(iphone-small) {
+          height: 250px;
+          background-size: contain;
+        }
+
         @include responsive(mobile-side) {
           height: 330px;
         }
@@ -136,6 +159,14 @@ header {
       .card-txt {
         background-color: $color-white;
         height: 330px;
+        @include responsive(mobile) {
+          height: 300px;
+          width: 300px;
+        }
+        @include responsive(iphone-small) {
+          height: 250px;
+          width: 250px;
+        }
       }
 
       h3 {
@@ -144,6 +175,9 @@ header {
         color: $color-noir;
         padding: 25px 0 0 10px;
         @include responsive(mobile-side) {
+          font-size: 1.3rem;
+        }
+        @include responsive(iphone-small) {
           font-size: 1.3rem;
         }
       }
@@ -165,6 +199,9 @@ header {
         border: none;
         border-bottom: 1px solid;
         color: rgba(160, 160, 160, 0.4);
+        @include responsive(iphone-small) {
+          font-size: 1.2rem;
+        }
 
         &::placeholder {
           color: rgba(160, 160, 160, 0.4);
@@ -204,6 +241,9 @@ header {
     text-decoration: none;
     display: inline-block;
     position: relative;
+    @include responsive(iphone-small) {
+      font-size: 1rem;
+    }
     &:after {
       content: "";
       position: absolute;
@@ -225,7 +265,11 @@ header {
     margin: 0 30px;
 
     @include responsive(mobile) {
-      width: 15%;
+      width: 50%;
+      margin: 10px;
+    }
+    @include responsive(iphone-small) {
+      width: 50px;
       margin: 10px;
     }
   }
@@ -255,6 +299,11 @@ header {
       font-size: 1.4rem;
       text-transform: uppercase;
     }
+    @include responsive(iphone-small) {
+      border: none;
+      font-size: 1.4rem;
+      text-transform: uppercase;
+    }
     @include responsive(mobile-side) {
       border: none;
       font-size: 1.4rem;
@@ -274,6 +323,9 @@ header {
   .burger {
     display: none;
     cursor: pointer;
+    @include responsive(iphone-small) {
+      display: block;
+    }
     @include responsive(mobile-side) {
       display: block;
     }
@@ -354,6 +406,10 @@ header {
 
       .nav-item {
         margin: 20px 0;
+        @include responsive(iphone-small) {
+          margin: 0;
+          font-size: 1rem;
+        }
       }
       &.active {
         left: 0;
@@ -390,9 +446,16 @@ header {
   @include responsive(mobile) {
     height: 30vh;
   }
+  @include responsive(iphone-small) {
+    height: 40vh;
+  }
   @include responsive(mobile-side) {
     height: 60vh;
   }
+  @include responsive(iphone11) {
+    height: 60vh;
+  }
+
   @include responsive(tab) {
     height: 80vh;
   }
@@ -457,7 +520,7 @@ header {
       }
 
       .card-img {
-        background-image: url("/images/booking-bg.png");
+        background-image: url("../images/booking-bg.png");
         background-repeat: no-repeat;
         @include responsive(mobile-side) {
           height: 330px;
@@ -536,10 +599,24 @@ header {
       font-size: 1%;
       width: 40%;
     }
+    @include responsive(iphone-small) {
+      position: absolute;
+      top: 24%;
+      left: 55%;
+      font-size: 1rem;
+      width: 40%;
+    }
     @include responsive(mobile-side) {
       position: absolute;
       top: 25%;
       left: 50%;
+      font-size: 1.3rem;
+      width: 40%;
+    }
+    @include responsive(iphone11) {
+      position: absolute;
+      top: 15%;
+      left: 55%;
       font-size: 1.3rem;
       width: 40%;
     }
@@ -564,18 +641,19 @@ header {
       font-size: 2rem;
       width: 40%;
     }
-    @include responsive(lap-top2) {
-      position: absolute;
-      top: 25%;
-      left: 45%;
-      font-size: 2rem;
-      width: 40%;
-    }
+
     @include responsive(desktop) {
       position: absolute;
       top: 25%;
       left: 42%;
       font-size: 2rem;
+      width: 40%;
+    }
+    @include responsive(desktop-large) {
+      position: absolute;
+      top: 25%;
+      left: 42%;
+      font-size: 2.4rem;
       width: 40%;
     }
   }
@@ -600,12 +678,26 @@ header {
       font-size: 10%;
       width: 40%;
     }
+    @include responsive(iphone-small) {
+      position: absolute;
+      top: 30%;
+      left: 55%;
+      font-size: 1.2rem;
+      width: 45%;
+    }
     @include responsive(mobile-side) {
       position: absolute;
       top: 30%;
       left: 50%;
       font-size: 1.8rem;
       width: 50%;
+    }
+    @include responsive(iphone11) {
+      position: absolute;
+      top: 20%;
+      left: 55%;
+      font-size: 1.5rem;
+      width: 45%;
     }
     @include responsive(tab) {
       position: absolute;
@@ -635,6 +727,13 @@ header {
       font-size: 3.6rem;
       width: 52%;
     }
+    @include responsive(desktop-large) {
+      position: absolute;
+      top: 30%;
+      left: 42%;
+      font-size: 3.6rem;
+      width: 52%;
+    }
   }
 
   @keyframes fade {
@@ -651,7 +750,7 @@ header {
   }
 
   .bg-img {
-    background-image: url("/images/komugi-top-bg.png");
+    background-image: url("../images/komugi-top-bg.png");
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
@@ -660,8 +759,14 @@ header {
     @include responsive(mobile) {
       height: 210px;
     }
+    @include responsive(iphone-small) {
+      height: 90%;
+    }
     @include responsive(mobile-side) {
       height: 55%;
+    }
+    @include responsive(iphone11) {
+      height: 50%;
     }
 
     @include responsive(tab) {
@@ -671,10 +776,13 @@ header {
       height: 60%;
     }
     @include responsive(lap-top2) {
-      height: 650px;
+      height: 70%;
     }
     @include responsive(desktop) {
-      height: 700px;
+      height: 75%;
+    }
+    @include responsive(desktop-large) {
+      height: 80%;
     }
   }
 
@@ -688,7 +796,6 @@ header {
     border-style: none;
     color: $color-white;
     box-shadow: rgba(53, 20, 8, 0.529) 0px 8px 24px;
-    // border-bottom: solid 1px #3d1c00;
     position: absolute;
     cursor: pointer;
     &:active {
@@ -700,11 +807,24 @@ header {
     @include responsive(mobile) {
       display: none;
     }
+    @include responsive(iphone-small) {
+      display: none;
+    }
+    @include responsive(iphone11) {
+      width: 19%;
+      height: 5%;
+      top: 5%;
+      left: 55%;
+      font-size: 1rem;
+    }
     @include responsive(mobile-side) {
       width: 18%;
       top: 40%;
       left: 50%;
+      height: 5%;
+      font-size: 1rem;
     }
+
     @include responsive(tab) {
       width: 13%;
       top: 40%;
@@ -741,7 +861,13 @@ header {
     @include responsive(mobile) {
       width: 45%;
     }
+    @include responsive(iphone-small) {
+      width: 20% !important;
+    }
     @include responsive(mobile-side) {
+      width: 45%;
+    }
+    @include responsive(iphone11) {
       width: 45%;
     }
 
@@ -757,6 +883,9 @@ header {
     @include responsive(desktop) {
       width: 38%;
     }
+    @include responsive(desktop-large) {
+      width: 38%;
+    }
   }
 
   .photo.nice {
@@ -770,7 +899,19 @@ header {
       top: 50%;
       right: 8%;
     }
+    @include responsive(iphone-small) {
+      position: absolute;
+      width: 30%;
+      top: 50%;
+      right: 8%;
+    }
     @include responsive(mobile-side) {
+      position: absolute;
+      width: 25%;
+      top: 40%;
+      right: 4%;
+    }
+    @include responsive(iphone11) {
       position: absolute;
       width: 25%;
       top: 40%;
@@ -786,7 +927,7 @@ header {
     @include responsive(lap-top2) {
       position: absolute;
       width: 25%;
-      top: 55%;
+      top: 50%;
       right: 5%;
     }
   }
@@ -805,8 +946,15 @@ header {
     height: 50vh;
     margin-top: 50px;
   }
+  @include responsive(iphone-small) {
+    height: 70vh;
+  }
   @include responsive(mobile-side) {
     height: 70vh;
+    margin-top: 0px;
+  }
+  @include responsive(iphone11) {
+    height: 60vh;
     margin-top: 0px;
   }
   @include responsive(tab) {
@@ -825,6 +973,9 @@ header {
     @include responsive(mobile-side) {
       font-size: 2.4rem;
     }
+    @include responsive(iphone11) {
+      font-size: 1.2rem;
+    }
   }
   & h3 {
     font-size: 2.4rem;
@@ -835,7 +986,13 @@ header {
     @include responsive(mobile-side) {
       font-size: 1.8rem;
     }
+    @include responsive(iphone11) {
+      font-size: 1.2rem;
+    }
     @include responsive(desktop) {
+      font-size: 3rem;
+    }
+    @include responsive(desktop-large) {
       font-size: 3rem;
     }
   }
@@ -844,12 +1001,18 @@ header {
     font-size: 2rem;
 
     @include responsive(mobile) {
-      font-size: 50%;
+      font-size: 1rem;
     }
     @include responsive(mobile-side) {
       font-size: 1.4rem;
     }
+    @include responsive(iphone11) {
+      font-size: 1rem;
+    }
     @include responsive(desktop) {
+      font-size: 2.4rem;
+    }
+    @include responsive(desktop-large) {
       font-size: 2.4rem;
     }
   }
@@ -864,8 +1027,14 @@ header {
   @include responsive(mobile) {
     width: 70%;
   }
+  @include responsive(iphone-small) {
+    width: 60%;
+  }
   @include responsive(mobile-side) {
     width: 75%;
+  }
+  @include responsive(iphone11) {
+    width: 60%;
   }
   @include responsive(tab) {
     width: 65%;
@@ -886,6 +1055,10 @@ header {
     height: 30%;
     width: 21%;
   }
+  @include responsive(iphone11) {
+    height: 30%;
+    width: 25%;
+  }
   @include responsive(tab) {
     height: 30%;
     width: 25%;
@@ -897,12 +1070,22 @@ header {
 
     @include responsive(mobile) {
       position: absolute;
-      top: 20%;
+      top: 10%;
+      left: 5px;
+    }
+    @include responsive(iphone-small) {
+      position: absolute;
+      top: 15%;
       left: 5px;
     }
     @include responsive(mobile-side) {
       position: absolute;
       top: 10%;
+      left: 5px;
+    }
+    @include responsive(iphone-11) {
+      position: absolute;
+      top: 30%;
       left: 5px;
     }
     @include responsive(tab) {
@@ -914,6 +1097,11 @@ header {
       position: absolute;
       top: 14%;
       left: 5%;
+    }
+    @include responsive(desktop-large) {
+      position: absolute;
+      top: 15%;
+      left: 10%;
     }
   }
   &.pork {
@@ -941,6 +1129,11 @@ header {
       top: 65%;
       left: 5%;
     }
+    @include responsive(desktop-large) {
+      position: absolute;
+      top: 65%;
+      left: 10%;
+    }
   }
   &.greens {
     position: absolute;
@@ -949,7 +1142,12 @@ header {
 
     @include responsive(mobile) {
       position: absolute;
-      top: 20%;
+      top: 10%;
+      right: 5px;
+    }
+    @include responsive(iphone-small) {
+      position: absolute;
+      top: 15%;
       right: 5px;
     }
     @include responsive(mobile-side) {
@@ -966,6 +1164,11 @@ header {
       position: absolute;
       top: 14%;
       right: 5%;
+    }
+    @include responsive(desktop-large) {
+      position: absolute;
+      top: 15%;
+      right: 10%;
     }
   }
   &.broth {
@@ -993,6 +1196,11 @@ header {
       top: 65%;
       right: 5%;
     }
+    @include responsive(desktop-large) {
+      position: absolute;
+      top: 65%;
+      right: 10%;
+    }
   }
 }
 //////////////////////concept//////////////////
@@ -1005,7 +1213,13 @@ header {
   @include responsive(mobile) {
     height: 130vh;
   }
+  @include responsive(iphone-small) {
+    height: 170vh;
+  }
   @include responsive(mobile-side) {
+    height: 200vh;
+  }
+  @include responsive(iphone11) {
     height: 200vh;
   }
   @include responsive(tab) {
@@ -1013,6 +1227,9 @@ header {
   }
   @include responsive(lap-top) {
     height: 200vh;
+  }
+  @include responsive(desktop-large) {
+    height: 280vh;
   }
 
   .concept-bg {
@@ -1035,6 +1252,9 @@ header {
       @include responsive(mobile-side) {
         height: 15vh;
       }
+      @include responsive(iphone11) {
+        height: 10vh;
+      }
       @include responsive(tab) {
         height: 15vh;
       }
@@ -1049,6 +1269,9 @@ header {
     @include responsive(mobile) {
       font-size: 2.4rem;
     }
+    @include responsive(iphone11) {
+      font-size: 2.4rem;
+    }
   }
 
   h3 {
@@ -1061,6 +1284,10 @@ header {
     }
     @include responsive(mobile-side) {
       font-size: 2.4rem;
+      margin: 50px;
+    }
+    @include responsive(iphone11) {
+      font-size: 1.5rem;
       margin: 50px;
     }
     @include responsive(tab) {
@@ -1078,6 +1305,9 @@ header {
     @include responsive(mobile-side) {
       font-size: 1.8rem;
       margin-top: 20px;
+    }
+    @include responsive(iphone11) {
+      font-size: 1.2rem;
     }
     @include responsive(tab) {
       font-size: 1.8rem;
@@ -1100,6 +1330,11 @@ header {
       font-size: 1.8rem;
       line-height: 100%;
     }
+    @include responsive(iphone11) {
+      margin-top: 10px;
+      font-size: 1.2rem;
+      line-height: 100%;
+    }
     @include responsive(tab) {
       margin-top: 10px;
       font-size: 2rem;
@@ -1108,6 +1343,10 @@ header {
     @include responsive(lap-top) {
       margin-top: 10px;
       line-height: 150%;
+    }
+    @include responsive(desktop-large) {
+      line-height: 150%;
+      font-size: 2.4rem;
     }
   }
 
@@ -1131,6 +1370,13 @@ header {
       flex-direction: column;
       align-items: center;
     }
+    @include responsive(iphone11) {
+      height: 25%;
+      width: 100%;
+      margin: 10px 0 0 0;
+      flex-direction: column;
+      align-items: center;
+    }
     @include responsive(tab) {
       height: 25%;
       width: 100%;
@@ -1148,6 +1394,10 @@ header {
     }
     @include responsive(desktop) {
       margin: 200px auto;
+      width: 80%;
+    }
+    @include responsive(desktop-large) {
+      margin: 300px auto;
       width: 80%;
     }
 
@@ -1201,6 +1451,10 @@ header {
         width: 50%;
         height: 110%;
       }
+      @include responsive(desktop-large) {
+        width: 50%;
+        height: 100%;
+      }
     }
   }
 }
@@ -1211,10 +1465,16 @@ header {
   position: relative;
   background-color: rgb(251, 251, 251);
   @include responsive(mobile) {
-    height: 280vh;
+    height: 320vh;
+  }
+  @include responsive(iphone-small) {
+    height: 440vh;
   }
   @include responsive(mobile-side) {
     height: 320vh;
+  }
+  @include responsive(iphone11) {
+    height: 350vh;
   }
   @include responsive(tab) {
     height: 250vh;
@@ -1238,6 +1498,10 @@ header {
       height: 180px;
       width: 180px;
     }
+    @include responsive(iphone11) {
+      height: 80px;
+      width: 80px;
+    }
     @include responsive(tab) {
       height: 200px;
       width: 200px;
@@ -1250,16 +1514,30 @@ header {
       height: 300px;
       width: 300px;
     }
+    @include responsive(desktop-large) {
+      height: 300px;
+      width: 250px;
+    }
     &.tonkotsu {
       position: absolute;
       top: 5%;
       left: 0%;
       @include responsive(mobile) {
         top: 2.8%;
-        left: 40%;
+        left: 50%;
+        transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
       }
       @include responsive(mobile-side) {
         top: 5%;
+      }
+      @include responsive(iphone11) {
+        top: 7%;
+        left: 50%;
+        transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
       }
       @include responsive(tab) {
         top: 6%;
@@ -1274,11 +1552,22 @@ header {
       top: 35%;
       right: 0%;
       @include responsive(mobile) {
-        top: 35.7%;
-        left: 40%;
+        top: 35.8%;
+        left: 50%;
+        transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
       }
       @include responsive(mobile-side) {
         top: 32%;
+      }
+
+      @include responsive(iphone11) {
+        top: 40.5%;
+        left: 50%;
+        transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
       }
       @include responsive(tab) {
         top: 33%;
@@ -1289,6 +1578,9 @@ header {
       @include responsive(desktop) {
         top: 32%;
       }
+      @include responsive(desktop-large) {
+        top: 32%;
+      }
     }
 
     &.shoyu {
@@ -1296,11 +1588,21 @@ header {
       top: 63%;
       left: 0%;
       @include responsive(mobile) {
-        top: 68.3%;
-        left: 40%;
+        top: 68.5%;
+        left: 50%;
+        transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
       }
       @include responsive(mobile-side) {
         top: 60%;
+      }
+      @include responsive(iphone11) {
+        top: 74%;
+        left: 50%;
+        transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
       }
       @include responsive(tab) {
         top: 62%;
@@ -1309,6 +1611,9 @@ header {
         top: 61%;
       }
       @include responsive(desktop) {
+        top: 61%;
+      }
+      @include responsive(desktop-large) {
         top: 61%;
       }
     }
@@ -1352,6 +1657,10 @@ header {
     width: 80%;
     height: 30%;
   }
+  @include responsive(iphone11) {
+    width: 80%;
+    height: 30%;
+  }
   @include responsive(tab) {
     width: 80%;
     height: 25%;
@@ -1363,8 +1672,11 @@ header {
     @include responsive(mobile) {
       font-size: 1rem;
     }
+    @include responsive(iphone11) {
+      font-size: 1rem;
+    }
     p {
-      font-size: 1px;
+      font-size: 1rem;
     }
   }
   .menu-list {
@@ -1374,6 +1686,9 @@ header {
     }
     @include responsive(mobile-side) {
       font-size: 1.3rem;
+    }
+    @include responsive(iphone11) {
+      font-size: 1rem;
     }
     @include responsive(tab) {
       font-size: 1.3rem;
@@ -1398,12 +1713,19 @@ header {
       width: 80%;
       padding: 10px;
     }
+    @include responsive(iphone11) {
+      width: 80%;
+      padding: 10px;
+    }
 
     .txt-price {
       display: flex;
       margin-bottom: 5px;
       font-size: 1.5rem;
       @include responsive(mobile) {
+        font-size: 1.2rem;
+      }
+      @include responsive(iphone11) {
         font-size: 1.2rem;
       }
     }
@@ -1436,7 +1758,11 @@ header {
   @include responsive(mobile) {
     height: 50vh;
   }
+
   @include responsive(mobile-side) {
+    height: 70vh;
+  }
+  @include responsive(iphone11) {
     height: 70vh;
   }
   @include responsive(tab) {
@@ -1453,8 +1779,15 @@ header {
   @include responsive(mobile) {
     width: 90%;
   }
+  @include responsive(iphone-small) {
+    width: 90%;
+  }
   @include responsive(mobile-side) {
     width: 90%;
+  }
+  @include responsive(iphone11) {
+    width: 90%;
+    margin-top: 50px;
   }
   @include responsive(tab) {
     width: 90%;
@@ -1479,8 +1812,20 @@ header {
     background-position: center;
     background-repeat: no-repeat;
   }
+  @include responsive(iphone-small) {
+    height: 20vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
   @include responsive(mobile-side) {
     height: 35vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  @include responsive(iphone11) {
+    height: 20vh;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -1511,6 +1856,9 @@ header {
     @include responsive(mobile) {
       font-size: 1.4rem;
     }
+    @include responsive(iphone11) {
+      font-size: 1.4rem;
+    }
   }
 
   &.active {
@@ -1532,6 +1880,12 @@ header {
   @include responsive(mobile) {
     height: 100vh;
   }
+  @include responsive(iphone-small) {
+    height: 150vh;
+  }
+  @include responsive(iphone11) {
+    height: 150vh;
+  }
 
   .info-bgi {
     height: 30vh;
@@ -1544,6 +1898,9 @@ header {
     }
     @include responsive(mobile-side) {
       height: 15vh;
+    }
+    @include responsive(iphone11) {
+      height: 10vh;
     }
     @include responsive(tab) {
       height: 15vh;
@@ -1577,15 +1934,27 @@ header {
     left: 10%;
 
     @include responsive(mobile) {
-      height: 350px;
-      width: 350px;
+      height: 300px;
+      width: 300px;
       top: 15%;
-      left: 1.2vh;
+      left: 50%;
+      transform: translateX(-50%);
+      -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
     }
     @include responsive(mobile-side) {
       height: 400px;
       width: 400px;
       top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+    }
+    @include responsive(iphone11) {
+      height: 300px;
+      width: 300px;
+      top: 15%;
       left: 50%;
       transform: translateX(-50%);
       -webkit-transform: translateX(-50%);
@@ -1618,7 +1987,10 @@ header {
       position: relative;
       z-index: 2;
       @include responsive(mobile) {
-        grid-template-columns: 350px;
+        grid-template-columns: 300px;
+      }
+      @include responsive(iphone11) {
+        grid-template-columns: 300px;
       }
 
       .square-content {
@@ -1631,11 +2003,17 @@ header {
         @include responsive(mobile) {
           height: 150px;
         }
+        @include responsive(iphone11) {
+          height: 150px;
+        }
       }
 
       h4 {
         font-size: 3.6rem;
         @include responsive(mobile) {
+          font-size: 2rem;
+        }
+        @include responsive(iphone11) {
           font-size: 2rem;
         }
       }
@@ -1645,12 +2023,19 @@ header {
         @include responsive(mobile) {
           font-size: 1.5rem;
         }
+        @include responsive(iphone11) {
+          font-size: 1.5rem;
+        }
       }
 
       .info-ramen-photo {
         height: 200px;
         width: 400px;
         @include responsive(mobile) {
+          height: 150px;
+          width: 100%;
+        }
+        @include responsive(iphone11) {
           height: 150px;
           width: 100%;
         }
@@ -1685,8 +2070,9 @@ header {
     right: 10%;
 
     @include responsive(mobile) {
-      width: 90%;
-      height: 25%;
+      width: 300px;
+      height: 300px;
+      margin-top: 50px;
       top: 50%;
       left: 50%;
       transform: translateX(-50%);
@@ -1697,6 +2083,16 @@ header {
       width: 400px;
       height: 400px;
       top: 80vh;
+      left: 50%;
+      transform: translateX(-50%);
+      -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+    }
+    @include responsive(iphone11) {
+      width: 300px;
+      height: 300px;
+      margin-top: 50px;
+      top: 50%;
       left: 50%;
       transform: translateX(-50%);
       -webkit-transform: translateX(-50%);
@@ -1728,6 +2124,9 @@ header {
     top: 110%;
     left: 50%;
     transform: translate(-50%, -80%);
+    @include responsive(mobile) {
+      margin-top: 100px;
+    }
 
     .info-txt-content {
       width: 100%;
@@ -1843,8 +2242,14 @@ header {
   @include responsive(mobile) {
     height: 20vh;
   }
+  @include responsive(iphone-small) {
+    height: 30vh;
+  }
   @include responsive(mobile-side) {
     height: 20vh;
+  }
+  @include responsive(iphone11) {
+    height: 25vh;
   }
 
   .icons {
@@ -1856,17 +2261,12 @@ header {
 
     .logo-co-footer {
       @include responsive(mobile) {
-        width: 15%;
+        width: 50%;
       }
     }
     .logo-co-footer {
       @include responsive(mobile-side) {
-        width: 15%;
-      }
-    }
-    .icon-arrow {
-      @include responsive(mobile) {
-        color: red;
+        width: 50%;
       }
     }
 
@@ -1937,7 +2337,7 @@ header {
       margin: 0 auto;
 
       li {
-        margin: 10px;
+        margin-right: 10px;
         color: $color-white;
       }
 
@@ -1946,6 +2346,9 @@ header {
         text-decoration: none;
         color: $color-white;
         @include responsive(mobile) {
+          font-size: 1rem;
+        }
+        @include responsive(iphone-small) {
           font-size: 1rem;
         }
         @include responsive(mobile-side) {
@@ -1964,9 +2367,18 @@ header {
     margin-top: 30px;
     @include responsive(mobile) {
       height: 50px;
+      margin: 0;
+    }
+    @include responsive(iphone-small) {
+      height: 60px;
+      margin-top: 10px;
     }
     @include responsive(mobile-side) {
-      margin-top: 10px;
+      margin-top: 0px;
+    }
+    @include responsive(iphone11) {
+      margin-top: 0px;
+      height: 50px;
     }
     @include responsive(lap-top2) {
       margin-top: 10px;
