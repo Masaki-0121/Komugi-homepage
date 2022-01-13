@@ -260,6 +260,17 @@ header .nav-link {
   position: relative;
 }
 
+@media only screen and (device-width: 393px) and (device-height: 759px) {
+  header .nav-link {
+    font-size: 1rem;
+    margin-right: 10px;
+    padding: 5px 4px;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
 @media only screen and (device-width: 375px) and (device-height: 667px) {
   header .nav-link {
     font-size: 1rem;
@@ -293,6 +304,13 @@ header .nav-link:hover:after {
 
 header .logo-co {
   margin: 0 30px;
+}
+
+@media only screen and (device-width: 393px) and (device-height: 759px) {
+  header .logo-co {
+    width: 50px;
+    margin: 10px;
+  }
 }
 
 @media only screen and (max-width: 375px) {
@@ -331,6 +349,17 @@ header .btn-header:hover {
   color: #fff;
   -webkit-transition: 0.5s;
   transition: 0.5s;
+}
+
+@media only screen and (device-width: 393px) and (device-height: 759px) {
+  header .btn-header {
+    border: none;
+    font-size: 1rem;
+    text-transform: uppercase;
+    padding: 20px 10px;
+    margin-right: 10px;
+    width: 100px;
+  }
 }
 
 @media only screen and (max-width: 375px) {
@@ -1757,6 +1786,14 @@ header .bar {
   margin-left: 50px;
 }
 
+@media only screen and (device-width: 393px) and (device-height: 759px) {
+  #section-concept .concept-card .text-card {
+    width: 80%;
+    margin: 0;
+    text-align: center;
+  }
+}
+
 @media only screen and (max-width: 375px) {
   #section-concept .concept-card .text-card {
     width: 80%;
@@ -2655,6 +2692,12 @@ header .bar {
   z-index: 1;
 }
 
+@media only screen and (device-width: 393px) and (device-height: 759px) {
+  #section-info .info-card-wrapper .square2 {
+    display: none;
+  }
+}
+
 @media only screen and (max-width: 375px) {
   #section-info .info-card-wrapper .square2 {
     display: none;
@@ -2751,6 +2794,13 @@ header .bar {
   margin-bottom: 10px;
 }
 
+@media only screen and (device-width: 393px) and (device-height: 759px) {
+  #section-info .info-wrapper .info-txt-content h3 {
+    font-size: 1.4rem;
+    width: 300px;
+  }
+}
+
 @media only screen and (max-width: 375px) {
   #section-info .info-wrapper .info-txt-content h3 {
     font-size: 1.4rem;
@@ -2767,6 +2817,12 @@ header .bar {
 #section-info .info-wrapper .info-txt-content p {
   font-size: 1.8rem;
   color: #6f6f6f;
+}
+
+@media only screen and (device-width: 393px) and (device-height: 759px) {
+  #section-info .info-wrapper .info-txt-content p {
+    font-size: 1.2rem;
+  }
 }
 
 @media only screen and (max-width: 375px) {
@@ -2792,6 +2848,12 @@ header .bar {
           align-items: center;
 }
 
+@media only screen and (device-width: 393px) and (device-height: 759px) {
+  #section-info form {
+    width: 80vw;
+  }
+}
+
 @media only screen and (max-width: 375px) {
   #section-info form {
     width: 80vw;
@@ -2812,6 +2874,13 @@ header .bar {
   cursor: text;
   margin: right 10px;
   display: inline-block;
+}
+
+@media only screen and (device-width: 393px) and (device-height: 759px) {
+  #section-info form .enter-address {
+    padding: 10px 20px;
+    width: 40%;
+  }
 }
 
 @media only screen and (max-width: 375px) {
@@ -2838,6 +2907,14 @@ header .bar {
   cursor: pointer;
   display: inline-block;
   margin-left: 30px;
+}
+
+@media only screen and (device-width: 393px) and (device-height: 759px) {
+  #section-info form .sign-up-btn {
+    padding: 10px 20px;
+    width: 40%;
+    font-size: calc(12px + 4 * (100vw - 375px) / 1225);
+  }
 }
 
 @media only screen and (max-width: 375px) {
@@ -3037,6 +3114,13 @@ header .bar {
   margin-top: 30px;
 }
 
+@media only screen and (device-width: 393px) and (device-height: 759px) {
+  #section-footer .footer-txt-3 {
+    margin-top: 0px;
+    height: 50px;
+  }
+}
+
 @media only screen and (max-width: 375px) {
   #section-footer .footer-txt-3 {
     height: 50px;
@@ -3051,13 +3135,6 @@ header .bar {
   }
 }
 
-@media only screen and (device-width: 393px) and (device-height: 759px) {
-  #section-footer .footer-txt-3 {
-    margin-top: 0px;
-    height: 50px;
-  }
-}
-
 @media only screen and (min-width: 992px) and (max-width: 1440px) {
   #section-footer .footer-txt-3 {
     margin-top: 10px;
@@ -3067,6 +3144,12 @@ header .bar {
 #section-footer .footer-txt-3 p {
   color: #fff;
   font-size: 1.8rem;
+}
+
+@media only screen and (device-width: 393px) and (device-height: 759px) {
+  #section-footer .footer-txt-3 p {
+    font-size: 1rem;
+  }
 }
 
 @media only screen and (max-width: 375px) {
