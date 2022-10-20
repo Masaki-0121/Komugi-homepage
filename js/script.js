@@ -25,7 +25,7 @@ const bookingScreenHide = document
   .addEventListener("click", function () {
     document.querySelector(".popup").style.display = "none";
   });
-//////////////////Burger btn////////////////
+//////////////////Burger-btn////////////////
 const burger = document.querySelector(".burger");
 const navMenu = document.querySelector(".nav-menu");
 
@@ -57,7 +57,7 @@ function removeActiveClasses() {
   });
 }
 
-//////////////////SMOoTH-SCROLL////////////////
+//////////////////SMOOTH-SCROLL////////////////
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (e) {
     e.preventDefault();
